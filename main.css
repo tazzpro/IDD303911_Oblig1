@@ -1,0 +1,73 @@
+#logo {
+    width: 5%;
+    height: auto;
+    padding: 1%;
+    min-width: 5%;
+}
+.container {
+    width: 100%;
+    height: 5%;
+    border-bottom-width: 3px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-color: rgb(214, 214, 214);
+    border-style: inset;
+}
+.logtext {
+    text-align: right;
+}
+.login-text {
+    padding: 5px;
+}
+.pageinfo {
+    text-align: center;
+    padding: 30px;
+}
+.rightcontainer {
+    height: 20%;
+    display: block;
+}
+.bottomcontainer {
+    width: 100%;
+    display: block;
+    float: right;
+    height: 10%;
+}
+.loginbutton {
+    margin: auto;
+    width: 25%;
+    padding: 10px;
+    min-width: 90px;
+}
+.new-user {
+    margin:auto;
+    width: 15%;
+    padding: 10px;
+}
+#login {
+    padding: 5%;
+    align-self: center;
+    margin: auto;
+    width: 90%;
+    font-size: 25px;
+    color: aliceblue;
+    background-color: #16bfff;
+    border-radius: 2px;
+    min-width: 50px;
+    
+}
+#leftsidelogin {
+    width: 35%;
+    float: left;
+  display: block;
+  padding-left: 10%;
+  padding-right: 5%;
+  height: 20%;
+}
+#rightsidelogin {
+    width: 40%;
+    float: left;
+  display: block;
+  padding: 4px;
+}
