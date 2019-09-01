@@ -71,3 +71,10 @@
   display: block;
   padding: 4px;
 }
+#signup {
+    visibility: hidden;
+    position: absolute;
+    width: 10%;
+    left: 40%;
+    
+}

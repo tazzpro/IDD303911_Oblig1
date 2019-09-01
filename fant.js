@@ -1,11 +1,13 @@
 class Controller {
     constructor() {
         let rasmus = new User(
-            1, 'rasmus', 'dronnen', 'Skolestien 25',
-            'Oslo', '0100', 'rasmussd@stud.ntnu.no', '123456'
-        );
+             'rasmus', 'dronnen', 'Heimstad',
+            'Oslo', '0100', 'rasmussd@stud.ntnu.no', '123456');
+        
+        this.users = new Set([rasmus]);
+
         //List of users
-        this.userList = null;
+        this.userList = new Array;
 
         //The selected item
         this.selectedItem = null;
@@ -13,24 +15,43 @@ class Controller {
         //The active user
         this.activeUser = null;
 
-        this.login_view = document.getElementById('loginpage').children;
-        this.login_view.style.display = 'block';
-        document.getElementById('new').onclick = event => this.togglePageView();
-        document.getElementById('login').onclick = togglePageView();
+        
+        
     }
+    
     togglePageView() {
         this.login_view.style.display = 'none';
         let aa = document.createElement('input');
         aa.type = checkbox;
     }
+    
 
 }
+function swapToCreate() {
+    this.main_view = document.getElementById('loginpage');
+    this.main_view.style.visibility = 'hidden';
+    this.main_view.style.position = 'bottom: 0px';
+    
+    this.create_view = document.getElementById('signup');
+    this.create_view.style.visibility = 'visible';
+}
 
+function addUser(form) {
+var newuser = new User(
+    firstName = form.firstName,
+    lastName = form.lastName,
+    addr = form.addr,
+    city = form.city,
+    postCode = form.postCode,
+    email = form.email,
+    password = form.password);
+
+    users.push(newuser);
+}
 
 class User {
-    constructor(uid, firstName, lastName,
+    constructor( firstName, lastName,
         addr, city, postCode, email, password) {
-        this.uid = uid;
         this.firstName = firstName;
         this.lastName = lastName;
         this.addr = addr;

@@ -14,6 +14,8 @@
         <img id="logo" src="Fant.png">
         <div class="header"></div>
     </div>
+
+    <!--Login Page-->
     <div id="loginpage">
         <div class="pageinfo">
             <h1>Login</h1>
@@ -38,10 +40,32 @@
                 <button id="login">Login</button>
             </div>
             <div class="new-user">
-                <a id="new" href="">Create new user</a>
+                <a id="new" href="#" onclick="swapToCreate();">Create new user</a>
             </div>
         </div>
     </div>
+
+    <!--Signup Page-->
+    <div id="signup">
+        <form name="sigunpform" id="upform" action="javascript:addUser();">
+                <input type="text" name="firstname" placeholder="Firstname">
+                <br>
+                <input type="text" name="lastname" placeholder="Lastname">
+                <br>
+                <input type="text" name="addr" placeholder="Adress">
+                <br>
+                <input type="text" name="city" placeholder="City">
+                <br>
+                <input type="text" name="postCode" placeholder="Postal code">
+                <br>
+                <input type="text" name="email" placeholder="Email">
+                <br>
+                <input type="password" name="password" placeholder="Password">
+                <br>
+                <input type="submit" value="Submit">
+        </form>
+    </div>
+
 
 </body>
 
