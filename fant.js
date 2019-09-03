@@ -15,38 +15,53 @@ class Controller {
         //The active user
         this.activeUser = null;
 
-        
+        this.login_view = document.getElementById('loginpage');
+        this.login_view.style.display = 'block';
+        document.getElementById('new').onclick = event => this.swapToCreate();
+
+        this.enlist_view = document.getElementById('signup');
+        this.enlist_view.style.display = 'none';
+        document.getElementById('log').onclick = event => this.swapToLogin();
+     
+        document.getElementById('signupform').onclick = event => this.validateform();
         
     }
     
-    togglePageView() {
+    swapToCreate() {
         this.login_view.style.display = 'none';
-        let aa = document.createElement('input');
-        aa.type = checkbox;
+        
+        this.enlist_view.style.display = 'block';
     }
-    
 
-}
-function swapToCreate() {
-    this.main_view = document.getElementById('loginpage');
-    this.main_view.style.visibility = 'hidden';
-    this.main_view.style.position = 'bottom: 0px';
-    
-    this.create_view = document.getElementById('signup');
-    this.create_view.style.visibility = 'visible';
-}
+    swapToLogin() {
+        this.enlist_view.style.display = 'none';
 
-function addUser(form) {
-var newuser = new User(
-    firstName = form.firstName,
-    lastName = form.lastName,
-    addr = form.addr,
-    city = form.city,
-    postCode = form.postCode,
-    email = form.email,
-    password = form.password);
+        this.login_view.style.display = 'block';
+    }
+    addUser(form) {
+        var newuser = new User(
+            firstName = form.firstName,
+            lastName = form.lastName,
+            addr = form.addr,
+            city = form.city,
+            postCode = form.postCode,
+            email = form.email,
+            password = form.password);
+        
+            this.users.push(newuser);
+    }
+    validateform(){
+        console.log('HEI');
+        let inform = new Array;
+        var firstName = document.getElementById('firstname');
+        if(firstName != null)
+        {
+            inform.push(firstName);
+            console.log('Got the first name' + firstName);
+            
+        }
+    }
 
-    users.push(newuser);
 }
 
 class User {
@@ -63,10 +78,16 @@ class User {
 }
 
 class Item {
-    constructor(title, price, description, image) {
+    constructor(ownerId, title, price, description, image) {
+        this.ownerId = ownerId;
         this.title = title;
         this.price = price;
         this.description = description;
         this.image = image;
     }
 }
+
+ctrl = null;
+document.addEventListener('DOMContentLoaded', function(){
+    this.ctrl = new Controller();
+}, false);

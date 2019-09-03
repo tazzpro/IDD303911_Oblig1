@@ -40,30 +40,36 @@
                 <button id="login">Login</button>
             </div>
             <div class="new-user">
-                <a id="new" href="#" onclick="swapToCreate();">Create new user</a>
+                <a id="new" href="#">Create new user</a>
             </div>
         </div>
     </div>
 
     <!--Signup Page-->
     <div id="signup">
-        <form name="sigunpform" id="upform" action="javascript:addUser();">
-                <input type="text" name="firstname" placeholder="Firstname">
+            <div class="pageinfo">
+                    <h1>Sign up!</h1>
+                </div>
+        <form name="sigunpform" id="upform">
+                <input type="text" name="firstname" id="firstname" placeholder="Firstname">
                 <br>
-                <input type="text" name="lastname" placeholder="Lastname">
+                <input type="text" name="lastname" id="lastname" placeholder="Lastname">
                 <br>
-                <input type="text" name="addr" placeholder="Adress">
+                <input type="text" name="addr" id="addr" placeholder="Adress">
                 <br>
-                <input type="text" name="city" placeholder="City">
+                <input type="text" name="city" id="city" placeholder="City">
                 <br>
-                <input type="text" name="postCode" placeholder="Postal code">
+                <input type="text" name="postCode" id="postcode" placeholder="Postal code">
                 <br>
-                <input type="text" name="email" placeholder="Email">
+                <input type="text" name="email" id="email" placeholder="Email">
                 <br>
-                <input type="password" name="password" placeholder="Password">
+                <input type="password" name="password" id="password" placeholder="Password">
                 <br>
-                <input type="submit" value="Submit">
+                <input type="submit" id="signupform" value="Submit">
         </form>
+        <div class="to-login">
+                <a id="log" href="#">Back to Login</a>
+            </div>
     </div>
 
 
