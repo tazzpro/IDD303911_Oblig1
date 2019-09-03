@@ -52,14 +52,19 @@ class Controller {
     }
     validateform(){
         console.log('HEI');
-        let inform = new Array;
-        var firstName = document.getElementById('firstname');
-        if(firstName != null)
-        {
-            inform.push(firstName);
-            console.log('Got the first name' + firstName);
+        var first = document.getElementById('firstname').value;
+        var last = document.getElementById('lastname').value;
+        var add = document.getElementById('addr').value;
+        var cit = document.getElementById('city').value;
+        var post = document.getElementById('postcode').value;
+        var mail = document.getElementById('email').value;
+        var pw = document.getElementById('password').value;
+        let newThing = new User (
+            first, last, add, cit, post, mail, pw
+        );
             
-        }
+        console.log(this.users);
+        
     }
 
 }
