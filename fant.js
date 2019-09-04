@@ -1,55 +1,118 @@
 class Controller {
     constructor() {
         let rasmus = new User(
-             'rasmus', 'dronnen', 'Heimstad',
-            'Oslo', '0100', 'rasmussd@stud.ntnu.no', '123456');
+             'ras', 'dronnen', 'Heimstad',
+            'Oslo', '0100', 'rasmussd@stud.ntnu.no', '123');
         
         this.users = new Set([rasmus]);
 
-        //List of users
-        this.userList = new Array;
+        this.items = [
+            new Item ('rasmus', 'sofa', '2000', 
+            'pen og ubrukt sofa selges billig',
+             'No image added'),
+             new Item ('Sofie', 'TV', '6000', 
+            'LG OLED UHD 55" søker nytt hjem',
+             'No image added'),
+             new Item ('Sofie', 'tv-benk', '200', 
+            'perfekt til en stor fin tv',
+             'No image added'),
+        ];
 
         //The selected item
         this.selectedItem = null;
 
+        //User to be made
+        this.selectedUser = null;
+
         //The active user
         this.activeUser = null;
-
+        
+        //loginview
         this.login_view = document.getElementById('loginpage');
         this.login_view.style.display = 'block';
         document.getElementById('new').onclick = event => this.swapToCreate();
 
+        //signupview
         this.enlist_view = document.getElementById('signup');
         this.enlist_view.style.display = 'none';
         document.getElementById('log').onclick = event => this.swapToLogin();
-     
-        document.getElementById('signupform').onclick = event => this.validateform();
+        //Itemview
+        this.item_view = document.getElementById('cont');
+        this.item_view.style.display = 'none';
+        //Add button here
         
+
+        document.getElementById('signupform').onclick = event => this.validateform();
+
+        document.getElementById('login').onclick = event => this.tryLogin();
+
+        if(this.activeUser === null)
+        {
+            document.getElementById('namelink').onclick = event => this.swapToLogin();
+        }
+        if(this.activeUser != null)
+        {
+            document.getElementById('namelink').innerHTML = this.activeUser.firstName;
+        }
+        
+
     }
     
     swapToCreate() {
-        this.login_view.style.display = 'none';
-        
-        this.enlist_view.style.display = 'block';
+        this.login_view.style.display   = 'none';
+        this.enlist_view.style.display  = 'block';
+        this.item_view.style.display    = 'none';
     }
 
     swapToLogin() {
-        this.enlist_view.style.display = 'none';
-
-        this.login_view.style.display = 'block';
-    }
-    addUser(form) {
-        var newuser = new User(
-            firstName = form.firstName,
-            lastName = form.lastName,
-            addr = form.addr,
-            city = form.city,
-            postCode = form.postCode,
-            email = form.email,
-            password = form.password);
+        this.login_view.style.display   = 'block';
+        this.enlist_view.style.display  = 'none';
+        this.item_view.style.display    = 'none';
         
-            this.users.push(newuser);
     }
+    swapToItems() {
+        this.populateItems();
+        this.login_view.style.display   = 'none';
+        this.enlist_view.style.display  = 'none';
+        this.item_view.style.display    = 'block';
+    }
+    changeLink() {
+        var string = 'Velkommen ' + this.activeUser.firstName;
+        document.getElementById('namelink').innerHTML = string;
+    }
+
+    tryLogin() {
+        
+        var name = document.getElementById('loginname').value;
+        var pass = document.getElementById('loginpw').value;
+
+        for(let user of this.users)
+        {
+            if(user.firstName == name)
+            {
+                
+                if(user.password == pass)
+                {
+                    this.activeUser = user;
+                    this.changeLink();
+                    this.swapToItems();
+                }
+                
+            }
+        }
+
+    }
+    populateItems() {
+        for(let item of this.items)
+        {
+            let itembox = document.getElementById('item');
+            let itemheader = document.createElement('h2');
+            itemheader.innerText = item.title;
+            this.item.appendChild(itembox);
+
+        }
+    }
+
     validateform(){
         console.log('HEI');
         var first = document.getElementById('firstname').value;
@@ -59,12 +122,10 @@ class Controller {
         var post = document.getElementById('postcode').value;
         var mail = document.getElementById('email').value;
         var pw = document.getElementById('password').value;
-        let newThing = new User (
+        this.selectedUser = new User (
             first, last, add, cit, post, mail, pw
         );
-            
-        console.log(this.users);
-        
+        this.users.push(this.selectedUser);
     }
 
 }

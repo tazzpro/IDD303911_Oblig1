@@ -12,7 +12,9 @@
 <body>
     <div class="container">
         <img id="logo" src="Fant.png">
-        <div class="header"></div>
+        <div class="header">
+            <a id="namelink" href="#">Log in</a>
+        </div>
     </div>
 
     <!--Login Page-->
@@ -28,10 +30,10 @@
             </div>
             <div class="rightcontainer">
                 <div id="rightsidelogin">
-                    <input class="login-text" placeholder="Username/Email" type="text" />
+                    <input class="login-text" placeholder="Username/Email" type="text" id="loginname"/>
                 </div>
                 <div id="rightsidelogin">
-                    <input class="login-text" placeholder="Password" type="password" />
+                    <input class="login-text" placeholder="Password" type="password" id="loginpw"/>
                 </div>
             </div>
         </div>
@@ -65,13 +67,19 @@
                 <br>
                 <input type="password" name="password" id="password" placeholder="Password" required>
                 <br>
-                <input type="submit" id="signupform" value="Submit">
+                <button id="signupform">Sign up</button>
         </form>
         <div class="to-login">
                 <a id="log" href="#">Back to Login</a>
             </div>
     </div>
 
+    <!--Items page-->
+    <div class="itemscontainer" id="cont">
+        <div class="item">
+
+        </div>
+    </div>
 
 </body>
 
