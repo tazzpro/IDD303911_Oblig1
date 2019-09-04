@@ -17,6 +17,8 @@ class Controller {
             'perfekt til en stor fin tv',
              'No image added'),
         ];
+        
+        this.htmlItems = document.getElementById('items');
 
         //The selected item
         this.selectedItem = null;
@@ -45,6 +47,11 @@ class Controller {
         document.getElementById('signupform').onclick = event => this.validateform();
 
         document.getElementById('login').onclick = event => this.tryLogin();
+
+        for(let i = 0; i < this.items.length; i++)
+        {
+            let div = this.
+        }
 
         if(this.activeUser === null)
         {
@@ -106,8 +113,12 @@ class Controller {
         for(let item of this.items)
         {
             let itembox = document.getElementById('item');
-            let itemheader = document.createElement('h2');
-            itemheader.innerText = item.title;
+            let itemheader = document.createElement('div');
+            itemheader.setAttribute('class', 'normal');
+            itemheader.data = item;
+            itemheader.innerHTML = `
+            <h2>${item.title}</h2>
+            `
             this.item.appendChild(itembox);
 
         }
