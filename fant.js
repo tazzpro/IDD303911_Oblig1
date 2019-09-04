@@ -1,7 +1,7 @@
 class Controller {
     constructor() {
         let rasmus = new User(
-            'ras', 'dronnen', 'Heimstad',
+            'rasmus', 'dronnen', 'Heimstad',
             'Oslo', '0100', 'rasmussd@stud.ntnu.no', '123');
 
         this.users = [rasmus];
@@ -52,6 +52,8 @@ class Controller {
 
         document.getElementById('login').onclick = event => this.tryLogin();
 
+        document.getElementById('logo').onclick = event => this.swapToItems();
+
         for (let i = 0; i < this.items.length; i++) {
             let div = this.populateItems(this.items[i]);
             this.htmlItems.appendChild(div);
@@ -67,7 +69,15 @@ class Controller {
 
     }
     popupSell() {
-        this.additem_view.style.display = 'block';
+        if(this.activeUser != null)
+        {
+            this.additem_view.style.display = 'block';
+        }
+        else
+        {
+            window.alert("You must log in to list items for sale");
+        }
+        
     }
     removeSell() {
         this.additem_view.style.display = 'none';
@@ -80,9 +90,12 @@ class Controller {
     }
 
     swapToLogin() {
-        this.login_view.style.display = 'block';
-        this.enlist_view.style.display = 'none';
-        this.item_view.style.display = 'none';
+        if (this.activeUser == null) {
+            this.login_view.style.display = 'block';
+            this.enlist_view.style.display = 'none';
+            this.item_view.style.display = 'none';
+        }
+
 
     }
     swapToItems() {
@@ -134,8 +147,8 @@ class Controller {
             this.activeUser.firstName, tit, pr, desc, null
         );
         this.items.push(item);
-        this.htmlItems.appendChild (this.populateItems(item));
-        
+        this.htmlItems.appendChild(this.populateItems(item));
+
 
     }
     clearItems() {
