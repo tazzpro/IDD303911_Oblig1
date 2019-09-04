@@ -4,42 +4,99 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="main.css" rel="stylesheet" type="text/css"/>
+    <link href="main.css" rel="stylesheet" type="text/css" />
     <script src="fant.js"></script>
     <title>Fant!</title>
 </head>
+
 <body>
     <div class="container">
         <img id="logo" src="Fant.png">
-        <div class="header"></div>
+        <div class="header">
+            <a id="namelink" href="#">Log in</a>
+        </div>
     </div>
 
-    <div class="pageinfo">
-        <h1>Login</h1>
-    </div>
+    <!--Login Page-->
+    <div id="loginpage">
+        <div class="pageinfo">
+            <h1>Login</h1>
+        </div>
 
-    <div class="login-cointainer">
-        <div id="leftsidelogin">
+        <div class="login-cointainer">
+            <div id="leftsidelogin">
                 <p class="logtext">User Name:</p>
                 <p class="logtext">Password:</p>
-        </div>
-        <div class="rightcontainer">
+            </div>
+            <div class="rightcontainer">
                 <div id="rightsidelogin">
-                        <input class="login-text" type="text"/>
+                    <input class="login-text" placeholder="Username/Email" type="text" id="loginname"/>
                 </div>
                 <div id="rightsidelogin">
-                        <input class="login-text" type="text"/>
+                    <input class="login-text" placeholder="Password" type="password" id="loginpw"/>
                 </div>
+            </div>
+        </div>
+        <div class="bottomcontainer">
+            <div class="loginbutton">
+                <button id="login">Login</button>
+            </div>
+            <div class="new-user">
+                <a id="new" href="#">Create new user</a>
+            </div>
         </div>
     </div>
-    <div class="bottomcontainer">
-    <div class="loginbutton">
-        <button id="login">Login</button>
+
+    <!--Signup Page-->
+    <div id="signup">
+            <div class="pageinfo">
+                    <h1>Sign up!</h1>
+                </div>
+        <form name="sigunpform" class="test" id="upform" action="#">
+                <input type="text" name="firstname" id="firstname" placeholder="Firstname" required>
+                <br>
+                <input type="text" name="lastname" id="lastname" placeholder="Lastname" required>
+                <br>
+                <input type="text" name="addr" id="addr" placeholder="Adress" required>
+                <br>
+                <input type="text" name="city" id="city" placeholder="City" required>
+                <br>
+                <input type="text" name="postCode" id="postcode" placeholder="Postal code" required>
+                <br>
+                <input type="text" name="email" id="email" placeholder="Email" required>
+                <br>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <br>
+                
+        </form>
+        <button id="signupform">Sign up</button>
+        <div class="to-login">
+                <a id="log" href="#">Back to Login</a>
+            </div>
     </div>
-    <div class="new-user">
-        <a href="#">Create new user</a>
+
+    <!--Items page-->
+    <div class="itemscontainer" id="cont">
+        <div class="saleitems" id="items">
+            <h1>Items for sale</h1>
+        </div>
+        <div>
+            <button id="sellbutton">Add something to sell</button>
+        </div>
     </div>
-</div>
+    <!--New Item page-->
+    <div id="newitems">
+        <h2>Sell your stuff</h2>
+        <form name="newitem" id="itemform" action="#">
+                <input type="text" name="itemtitle" id="itemtitle" placeholder="Something catchy" required>
+                <br>
+                <input type="text" name="itemprice" id="itemprice" placeholder="ex 200kr" required>
+                <br>
+                <input type="text" name="itemdesc" id="itemdesc" placeholder="Description of item" required>
+                <br>
+        </form>
+        <button id="sold">Add item! </button>
+    </div>
 
 </body>
 

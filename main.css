@@ -14,6 +14,11 @@
     border-color: rgb(214, 214, 214);
     border-style: inset;
 }
+.header{
+    float: right;
+    margin-top: 20px;
+    margin-right: 3%;
+}
 .logtext {
     text-align: right;
 }
@@ -23,6 +28,7 @@
 .pageinfo {
     text-align: center;
     padding: 30px;
+    min-width: 30%;
 }
 .rightcontainer {
     height: 20%;
@@ -70,4 +76,25 @@
     float: left;
   display: block;
   padding: 4px;
+}
+#signup {
+    position: absolute;
+    width: 10%;
+    left: 40%;
+}
+.itemscontainer {
+    width: 100%;
+    overflow-y: scroll;
+}
+.item {
+    width: 80;
+    max-height: 100px;
+}
+#newitems {
+    background-color: white;
+    width: 80%;
+    height: 50%;
+    float: left;
+    margin-left: 45%;
+    position: absolute;
 }
