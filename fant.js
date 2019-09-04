@@ -1,23 +1,23 @@
 class Controller {
     constructor() {
         let rasmus = new User(
-             'ras', 'dronnen', 'Heimstad',
+            'ras', 'dronnen', 'Heimstad',
             'Oslo', '0100', 'rasmussd@stud.ntnu.no', '123');
-        
-        this.users = new Set([rasmus]);
+
+        this.users = [rasmus];
 
         this.items = [
-            new Item ('rasmus', 'sofa', '2000', 
-            'pen og ubrukt sofa selges billig',
-             'No image added'),
-             new Item ('Sofie', 'TV', '6000', 
-            'LG OLED UHD 55" søker nytt hjem',
-             'No image added'),
-             new Item ('Sofie', 'tv-benk', '200', 
-            'perfekt til en stor fin tv',
-             'No image added'),
+            new Item('rasmus', 'sofa', '2000',
+                'pen og ubrukt sofa selges billig',
+                'No image added'),
+            new Item('Sofie', 'TV', '6000',
+                'LG OLED UHD 55" søker nytt hjem',
+                'No image added'),
+            new Item('Sofie', 'tv-benk', '200',
+                'perfekt til en stor fin tv',
+                'No image added'),
         ];
-        
+
         this.htmlItems = document.getElementById('items');
 
         //The selected item
@@ -28,7 +28,7 @@ class Controller {
 
         //The active user
         this.activeUser = null;
-        
+
         //loginview
         this.login_view = document.getElementById('loginpage');
         this.login_view.style.display = 'block';
@@ -41,91 +41,113 @@ class Controller {
         //Itemview
         this.item_view = document.getElementById('cont');
         this.item_view.style.display = 'none';
+        document.getElementById('sellbutton').onclick = event => this.popupSell();
         //Add button here
-        
+
+        this.additem_view = document.getElementById('newitems');
+        this.additem_view.style.display = 'none';
+        document.getElementById('sold').onclick = event => this.enlistItem();
 
         document.getElementById('signupform').onclick = event => this.validateform();
 
         document.getElementById('login').onclick = event => this.tryLogin();
 
-        for(let i = 0; i < this.items.length; i++)
-        {
-            let div = this.
+        for (let i = 0; i < this.items.length; i++) {
+            let div = this.populateItems(this.items[i]);
+            this.htmlItems.appendChild(div);
         }
 
-        if(this.activeUser === null)
-        {
+        if (this.activeUser === null) {
             document.getElementById('namelink').onclick = event => this.swapToLogin();
         }
-        if(this.activeUser != null)
-        {
+        if (this.activeUser != null) {
             document.getElementById('namelink').innerHTML = this.activeUser.firstName;
         }
-        
+
 
     }
-    
+    popupSell() {
+        this.additem_view.style.display = 'block';
+    }
+    removeSell() {
+        this.additem_view.style.display = 'none';
+    }
+
     swapToCreate() {
-        this.login_view.style.display   = 'none';
-        this.enlist_view.style.display  = 'block';
-        this.item_view.style.display    = 'none';
+        this.login_view.style.display = 'none';
+        this.enlist_view.style.display = 'block';
+        this.item_view.style.display = 'none';
     }
 
     swapToLogin() {
-        this.login_view.style.display   = 'block';
-        this.enlist_view.style.display  = 'none';
-        this.item_view.style.display    = 'none';
-        
+        this.login_view.style.display = 'block';
+        this.enlist_view.style.display = 'none';
+        this.item_view.style.display = 'none';
+
     }
     swapToItems() {
-        this.populateItems();
-        this.login_view.style.display   = 'none';
-        this.enlist_view.style.display  = 'none';
-        this.item_view.style.display    = 'block';
+        this.login_view.style.display = 'none';
+        this.enlist_view.style.display = 'none';
+        this.item_view.style.display = 'block';
     }
     changeLink() {
         var string = 'Velkommen ' + this.activeUser.firstName;
         document.getElementById('namelink').innerHTML = string;
     }
 
+
     tryLogin() {
-        
+
         var name = document.getElementById('loginname').value;
         var pass = document.getElementById('loginpw').value;
 
-        for(let user of this.users)
-        {
-            if(user.firstName == name)
-            {
-                
-                if(user.password == pass)
-                {
+        for (let user of this.users) {
+            if (user.firstName == name) {
+
+                if (user.password == pass) {
                     this.activeUser = user;
                     this.changeLink();
                     this.swapToItems();
                 }
-                
+
             }
         }
 
     }
-    populateItems() {
-        for(let item of this.items)
-        {
-            let itembox = document.getElementById('item');
-            let itemheader = document.createElement('div');
-            itemheader.setAttribute('class', 'normal');
-            itemheader.data = item;
-            itemheader.innerHTML = `
+    populateItems(item) {
+        let itemheader = document.createElement('div');
+        itemheader.setAttribute('class', 'normal');
+        itemheader.data = item;
+        itemheader.innerHTML = `
             <h2>${item.title}</h2>
+            <h3>${item.price}</h3>
+            <p>${item.description}</p>
             `
-            this.item.appendChild(itembox);
+        return itemheader;
+    }
+    enlistItem() {
+        var tit = document.getElementById('itemtitle').value;
+        var pr = document.getElementById('itemprice').value;
+        var desc = document.getElementById('itemdesc').value;
 
+        var item = new Item(
+            this.activeUser.firstName, tit, pr, desc, null
+        );
+        this.items.push(item);
+        this.htmlItems.appendChild (this.populateItems(item));
+        
+
+    }
+    clearItems() {
+        this.htmlItems = null;
+        this.htmlItems = document.getElementById('items');
+        for (let i = 0; i < this.items.length; i++) {
+            let div = this.populateItems(this.items[i]);
+            this.htmlItems.appendChild(div);
         }
     }
 
-    validateform(){
-        console.log('HEI');
+    validateform() {
         var first = document.getElementById('firstname').value;
         var last = document.getElementById('lastname').value;
         var add = document.getElementById('addr').value;
@@ -133,7 +155,7 @@ class Controller {
         var post = document.getElementById('postcode').value;
         var mail = document.getElementById('email').value;
         var pw = document.getElementById('password').value;
-        this.selectedUser = new User (
+        this.selectedUser = new User(
             first, last, add, cit, post, mail, pw
         );
         this.users.push(this.selectedUser);
@@ -142,7 +164,7 @@ class Controller {
 }
 
 class User {
-    constructor( firstName, lastName,
+    constructor(firstName, lastName,
         addr, city, postCode, email, password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -165,6 +187,6 @@ class Item {
 }
 
 ctrl = null;
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
     this.ctrl = new Controller();
 }, false);

@@ -67,8 +67,9 @@
                 <br>
                 <input type="password" name="password" id="password" placeholder="Password" required>
                 <br>
-                <button id="signupform">Sign up</button>
+                
         </form>
+        <button id="signupform">Sign up</button>
         <div class="to-login">
                 <a id="log" href="#">Back to Login</a>
             </div>
@@ -76,9 +77,25 @@
 
     <!--Items page-->
     <div class="itemscontainer" id="cont">
-        <div class="items">
-
+        <div class="saleitems" id="items">
+            <h1>Items for sale</h1>
         </div>
+        <div>
+            <button id="sellbutton">Add something to sell</button>
+        </div>
+    </div>
+    <!--New Item page-->
+    <div id="newitems">
+        <h2>Sell your stuff</h2>
+        <form name="newitem" id="itemform" action="#">
+                <input type="text" name="itemtitle" id="itemtitle" placeholder="Something catchy" required>
+                <br>
+                <input type="text" name="itemprice" id="itemprice" placeholder="ex 200kr" required>
+                <br>
+                <input type="text" name="itemdesc" id="itemdesc" placeholder="Description of item" required>
+                <br>
+        </form>
+        <button id="sold">Add item! </button>
     </div>
 
 </body>
